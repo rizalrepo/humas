@@ -1,10 +1,9 @@
 <?php
 require '../../app/config.php';
 include_once '../../template/header.php';
-$page = 'diklat';
+$page = 'masuk';
 include_once '../../template/sidebar.php';
 ?>
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -13,7 +12,7 @@ include_once '../../template/sidebar.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h4 class="m-0 text-dark"><i class="fa fa-calendar-week ml-1 mr-1"></i> Data Diklat</h4>
+                    <h4 class="m-0 text-dark"><i class="fas fa-envelope-open-text ml-1 mr-1"></i> Data Surat Masuk</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6 text-right">
                     <a href="tambah" class="btn btn-sm bg-dark"><i class="fa fa-plus-circle"> Tambah Data</i></a>
@@ -42,11 +41,9 @@ include_once '../../template/sidebar.php';
                                     <thead class="bg-lightblue">
                                         <tr align="center">
                                             <th>No</th>
-                                            <th>Tema</th>
-                                            <th>Data Materi</th>
-                                            <th>Waktu</th>
-                                            <th>Ruangan</th>
-                                            <th>Status</th>
+                                            <th>Data Surat</th>
+                                            <th>Jenis Surat</th>
+                                            <th>Tanggal Terima</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -54,36 +51,26 @@ include_once '../../template/sidebar.php';
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $data = $con->query("SELECT * FROM diklat a JOIN materi b ON a.id_materi = b.id_materi JOIN tutor c ON a.id_tutor = c.id_tutor JOIN ruangan d ON a.id_ruangan = d.id_ruangan ORDER BY tgl_mulai DESC");
+                                        $data = $con->query("SELECT * FROM surat_masuk a JOIN jenis_surat b ON a.id_jenis_surat = b.id_jenis_surat ORDER BY a.id_surat_masuk DESC");
                                         while ($row = $data->fetch_array()) {
                                         ?>
                                             <tr>
                                                 <td align="center" width="5%"><?= $no++ ?></td>
-                                                <td><?= $row['tema'] ?></td>
                                                 <td>
-                                                    <b>Materi</b> : <?= $row['nm_materi'] ?><br>
-                                                    <b>Tutor</b> : <?= $row['nm_tutor'] ?>
+                                                    <b>Nomor</b> : <?= $row['no_surat'] ?>
+                                                    <hr class="mt-1 mb-1">
+                                                    <b>Tanggal</b> : <?= tgl($row['tgl_surat']) ?>
+                                                    <hr class="mt-1 mb-1">
+                                                    <b>Perihal</b> : <?= $row['perihal'] ?>
+                                                    <hr class="mt-1 mb-1">
+                                                    <b>Pengirim</b> : <?= $row['pengirim'] ?>
                                                 </td>
-                                                <td align="center">
-                                                    <?php if ($row['tgl_mulai'] == $row['tgl_selesai']) { ?>
-                                                        <?= tgl($row['tgl_mulai']) ?>
-                                                    <?php } else { ?>
-                                                        <?= tgl($row['tgl_mulai']) . ' - ' . tgl($row['tgl_selesai']) ?>
-                                                    <?php } ?>
-                                                    <br>
-                                                    <b>Jam Mulai</b> : <?= $row['jam_mulai'] ?>
-                                                </td>
-                                                <td align="center"><?= $row['nm_ruangan'] ?></td>
-                                                <td align="center">
-                                                    <?php if ($row['sts'] == 1) {
-                                                        echo 'Aktif';
-                                                    } else {
-                                                        echo 'Non Aktif';
-                                                    } ?>
-                                                </td>
-                                                <td align="center" width="9%">
+                                                <td align="center"><?= $row['nm_jenis_surat'] ?></td>
+                                                <td align="center"><?= tgl($row['tgl_terima']) ?></td>
+                                                <td align="center" width="12%">
+                                                    <a href="<?= base_url() ?>/file-bukti/masuk/<?= $row['bukti'] ?>" target="_blank" class="btn btn-primary btn-xs" title="Bukti"><i class="fa fa-camera"></i></a>
                                                     <a href="edit?id=<?= $row[0] ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-                                                    <a href="hapus?id=<?= $row[0] ?>" class="btn btn-danger btn-xs alert-hapus" title="Hapus"><i class="fa fa-trash"></i> </a>
+                                                    <a href="hapus?id=<?= $row[0] ?>" class="btn btn-danger btn-xs alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

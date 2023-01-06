@@ -33,12 +33,12 @@
                     </li>
 
                     <li class="nav-item has-treeview  <?php if (
-                                                            $page == 'user' || $page == 'unit-kerja'
+                                                            $page == 'user' || $page == 'unit-kerja' || $page == 'jenis-kegiatan' || $page == 'jenis-surat'
                                                         ) {
                                                             echo 'menu-open';
                                                         } ?>">
                         <a href="#" class="nav-link <?php if (
-                                                        $page == 'user' || $page == 'unit-kerja'
+                                                        $page == 'user' || $page == 'unit-kerja' || $page == 'jenis-kegiatan' || $page == 'jenis-surat'
                                                     ) {
                                                         echo 'active';
                                                     } ?>">
@@ -65,16 +65,52 @@
                                     <p>Data Unit Kerja</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/jenis-surat/" class="nav-link <?php if ($page == 'jenis-surat') {
+                                                                                                    echo 'active';
+                                                                                                } ?>">
+                                    <i class="fas fa-bookmark mr-1"></i>
+                                    <p>Data Jenis Surat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/jenis-kegiatan/" class="nav-link <?php if ($page == 'jenis-kegiatan') {
+                                                                                                        echo 'active';
+                                                                                                    } ?>">
+                                    <i class="fas fa-layer-group mr-1"></i>
+                                    <p>Data Jenis Kegiatan</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url() ?>/admin/diklat/" class="nav-link <?php if ($page == 'diklat') {
+                        <a href="<?= base_url() ?>/admin/aspirasi/" class="nav-link <?php if ($page == 'aspirasi') {
                                                                                         echo 'active';
                                                                                     } ?>">
-                            <i class="nav-icon fa fa-calendar-week"></i>
+                            <i class="nav-icon fas fa-comment-alt"></i>
                             <p>
-                                Data Diklat
+                                Data Aspirasi
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/pengaduan/" class="nav-link <?php if ($page == 'pengaduan') {
+                                                                                            echo 'active';
+                                                                                        } ?>">
+                            <i class="nav-icon fas fa-comment-dots"></i>
+                            <p>
+                                Data Pengaduan
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/masuk/" class="nav-link <?php if ($page == 'masuk') {
+                                                                                        echo 'active';
+                                                                                    } ?>">
+                            <i class="nav-icon fa fa-envelope-open-text"></i>
+                            <p>
+                                Data Surat Masuk
                             </p>
                         </a>
                     </li>

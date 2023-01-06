@@ -4,11 +4,11 @@ include_once '../template/header.php';
 $page = 'dashboard';
 include_once '../template/sidebar.php';
 
-// $a1 = $con->query("SELECT COUNT(*) AS total FROM pendaftaran")->fetch_array();
-// $a2 = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE verif = 1")->fetch_array();
-// $a3 = $con->query("SELECT COUNT(*) AS total FROM pendaftaran WHERE verif = 0")->fetch_array();
-// $b = $con->query("SELECT COUNT(*) AS total FROM diklat")->fetch_array();
-// $c = $con->query("SELECT COUNT(*) AS total FROM peserta")->fetch_array();
+$a = $con->query("SELECT COUNT(*) AS total FROM aspirasi")->fetch_array();
+$a2 = $con->query("SELECT COUNT(*) AS total FROM aspirasi WHERE status = 0")->fetch_array();
+$b = $con->query("SELECT COUNT(*) AS total FROM pengaduan")->fetch_array();
+$b2 = $con->query("SELECT COUNT(*) AS total FROM pengaduan WHERE status = 0")->fetch_array();
+$c = $con->query("SELECT COUNT(*) AS total FROM surat_masuk")->fetch_array();
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -26,12 +26,34 @@ include_once '../template/sidebar.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="info-box mb-12 bg-cyan">
+                    <div class="info-box mb-12 bg-lightblue">
                         <span class="info-box-icon"><i class="fas fa-comment-alt"></i></span>
 
                         <div class="info-box-content">
-                            <h6 class="info-box-text mt-1 mb-0">Data Aspirasi</h6>
-                            <span>2 Total Data</span>
+                            <h6 class="info-box-text mt-1 mb-1">Data Aspirasi</h6>
+                            <span><?= $a['total'] ?> Total Data | <span class="badge badge-warning"><?= $a2['total'] ?> Data belum ditindak lanjuti</span></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="info-box mb-12 bg-lightblue">
+                        <span class="info-box-icon"><i class="fas fa-comment-dots"></i></span>
+
+                        <div class="info-box-content">
+                            <h6 class="info-box-text mt-1 mb-1">Data Pengaduan</h6>
+                            <span><?= $b['total'] ?> Total Data | <span class="badge badge-warning"><?= $b2['total'] ?> Data belum ditindak lanjuti</span></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="info-box mb-12 bg-primary">
+                        <span class="info-box-icon"><i class="fas fa-envelope-open-text"></i></span>
+
+                        <div class="info-box-content">
+                            <h6 class="info-box-text mt-1 mb-1">Data Surat Masuk</h6>
+                            <span><?= $c['total'] ?> Total Data</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
