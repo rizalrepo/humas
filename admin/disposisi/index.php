@@ -1,7 +1,7 @@
 <?php
 require '../../app/config.php';
 include_once '../../template/header.php';
-$page = 'pengaduan';
+$page = 'disposisi';
 include_once '../../template/sidebar.php';
 ?>
 
@@ -12,9 +12,10 @@ include_once '../../template/sidebar.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h4 class="m-0 text-dark"><i class="fas fa-comment-dots ml-1 mr-1"></i> Data Pengaduan</h4>
+                    <h4 class="m-0 text-dark"><i class="fas fa-mail-bulk ml-1 mr-1"></i> Data Disposisi Surat Masuk</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6 text-right">
+                    <a href="tambah" class="btn btn-sm bg-dark"><i class="fa fa-plus-circle"> Tambah Data</i></a>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -40,10 +41,10 @@ include_once '../../template/sidebar.php';
                                     <thead class="bg-lightblue">
                                         <tr align="center">
                                             <th>No</th>
-                                            <th>Data Pengirim</th>
-                                            <th>Waktu</th>
-                                            <th>Pesan</th>
-                                            <th>Tindak Lanjut</th>
+                                            <th>Data Surat</th>
+                                            <th>Jenis Surat</th>
+                                            <th>Tanggal Terima</th>
+                                            <th>Disposisi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -51,42 +52,44 @@ include_once '../../template/sidebar.php';
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $data = $con->query("SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja ORDER BY a.id_pengaduan DESC");
+                                        $data = $con->query("SELECT * FROM surat_masuk a JOIN jenis_surat b ON a.id_jenis_surat = b.id_jenis_surat ORDER BY a.id_surat_masuk DESC");
                                         while ($row = $data->fetch_array()) {
                                         ?>
                                             <tr>
                                                 <td align="center" width="5%"><?= $no++ ?></td>
                                                 <td>
-                                                    <b>Nama</b> : <?= $row['nm_lengkap'] ?>
+                                                    <b>Nomor</b> : <?= $row['no_surat'] ?>
                                                     <hr class="mt-1 mb-1">
-                                                    <b>No HP</b> : <a href="https://wa.me/<?= $row['no_hp'] ?>" target="_blank"><?= $row['no_hp'] ?></a>
+                                                    <b>Tanggal</b> : <?= tgl($row['tgl_surat']) ?>
+                                                    <hr class="mt-1 mb-1">
+                                                    <b>Perihal</b> : <?= $row['perihal'] ?>
+                                                    <hr class="mt-1 mb-1">
+                                                    <b>Pengirim</b> : <?= $row['pengirim'] ?>
                                                 </td>
-                                                <td align="center"><?= tgl($row['tanggal']) ?> <br> Jam <?= $row['jam'] ?></td>
-                                                <td><?= $row['pesan'] ?></td>
-                                                <td>
-                                                    <?php if ($row['status'] == 1) { ?>
-                                                        <div class="text-center">
-                                                            <span class="btn btn-xs btn-warning fw-bold">
-                                                                Belum ada tindak lanjut
-                                                            </span>
-                                                        </div>
-                                                    <?php } else if ($row['status'] == 3) { ?>
-                                                        <div class="text-center">
-                                                            <span class="btn btn-xs btn-danger fw-bold">
-                                                                Data yang disampaikan tidak Valid
-                                                            </span>
-                                                        </div>
+                                                <td align="center"><?= $row['nm_jenis_surat'] ?></td>
+                                                <td align="center"><?= tgl($row['tgl_terima']) ?></td>
+                                                <td align="center">
+                                                    <?php
+                                                    $dpp = $con->query("SELECT * FROM disposisi a JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja")->fetch_array();
+
+                                                    $dpp2 = $con->query("SELECT * FROM disposisi a JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja ORDER BY a.id_unit_kerja ASC");
+
+                                                    if ($dpp['id_surat_masuk'] == $row[0]) { ?>
+                                                        <span class="btn btn-xs btn-success">
+                                                            Surat Sudah Disposisi ke : <br>
+                                                            <b>
+                                                                <?php while ($row2 = $dpp2->fetch_array()) { ?>
+                                                                    <?= $row2['nm_unit_kerja'] . '<br>' ?>
+                                                                <?php } ?>
+                                                            </b>
+                                                        </span>
                                                     <?php } else { ?>
-                                                        <b>Tindakan</b> : <?= $row['tindakan'] ?>
-                                                        <hr class="mt-1 mb-1">
-                                                        <b>PIC</b> : <?= $row['nm_unit_kerja'] ?>
+                                                        <span class="btn btn-xs btn-danger">Surat Belum di Disposisi !</span>
                                                     <?php } ?>
                                                 </td>
                                                 <td align="center" width="9%">
-                                                    <a href="edit?id=<?= $row[0] ?>" class="btn btn-info btn-xs" title="Udit"><i class="fa fa-edit"></i></a>
-                                                    <?php if ($row['status'] != 0) { ?>
-                                                        <a href="hapus?id=<?= $row[0] ?>" class="btn btn-danger btn-xs alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
-                                                    <?php } ?>
+                                                    <a href="<?= base_url() ?>/file-bukti/masuk/<?= $row['bukti'] ?>" target="_blank" class="btn btn-primary btn-xs" title="Bukti"><i class="fa fa-camera"></i></a>
+                                                    <a href="edit?id=<?= $row[0] ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

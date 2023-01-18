@@ -206,7 +206,7 @@ if (isset($_POST['aspirasi'])) {
 		'$tgl',
 		'$jam',
 		'$pesan',
-		0,
+		1,
 		default,
 		default
 	)");
@@ -260,7 +260,7 @@ if (isset($_POST['pengaduan'])) {
 		'$tgl',
 		'$jam',
 		'$pesan',
-		0,
+		1,
 		default,
 		default
 	)");

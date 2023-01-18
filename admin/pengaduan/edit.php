@@ -10,9 +10,9 @@ $row = $query->fetch_array();
 
 $sts = [
     '' => '-- Pilih --',
-    '0' => 'Belum ada Tindakan',
-    '1' => 'pengaduan ditindak lanjuti',
-    '2' => 'Data yang disampaikan tidak Valid',
+    '1' => 'Belum ada Tindakan',
+    '2' => 'Pengaduan ditindak lanjuti',
+    '3' => 'Data yang disampaikan tidak Valid',
 ];
 ?>
 <!-- Content Wrapper. Contains page content -->

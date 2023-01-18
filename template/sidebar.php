@@ -114,8 +114,28 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/disposisi/" class="nav-link <?php if ($page == 'disposisi') {
+                                                                                            echo 'active';
+                                                                                        } ?>">
+                            <i class="nav-icon fas fa-mail-bulk"></i>
+                            <p>
+                                Data Disposisi Surat Masuk
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/admin/kegiatan/" class="nav-link <?php if ($page == 'kegiatan') {
+                                                                                        echo 'active';
+                                                                                    } ?>">
+                            <i class="nav-icon fas fa-bell"></i>
+                            <p>
+                                Data Kegiatan
+                            </p>
+                        </a>
+                    </li>
 
-                    <!-- <li class="nav-header">Laporan</li>
+                    <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-print"></i>
@@ -126,25 +146,45 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_diklat">
-                                    <p><i class="fa fa-file-alt mr-1"></i> Diklat</p>
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_aspirasi">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Aspirasi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_pengaduan">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Pengaduan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_masuk">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Surat Masuk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_disposisi">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Disposisi Surat Masuk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kegiatan">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Kegiatan</p>
                                 </a>
                             </li>
                         </ul>
-                    </li> -->
+                    </li>
 
                 <?php } else { ?>
                     <li class="nav-item">
-                        <a href="<?= base_url() ?>/peserta/" class="nav-link <?php if ($page == 'dashboard') {
-                                                                                    echo 'active';
-                                                                                } ?>">
+                        <a href="<?= base_url() ?>/admin/" class="nav-link <?php if ($page == 'dashboard') {
+                                                                                echo 'active';
+                                                                            } ?>">
                             <i class="nav-icon fa fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
                             </p>
                         </a>
                     </li>
-                    <!-- <li class="nav-header">Laporan</li>
+                    <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-print"></i>
@@ -155,12 +195,32 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_diklat">
-                                    <p><i class="fa fa-file-alt mr-1"></i> Diklat</p>
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_aspirasi">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Aspirasi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_pengaduan">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Pengaduan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_masuk">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Surat Masuk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_disposisi">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Disposisi Surat Masuk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kegiatan">
+                                    <p><i class="fa fa-file-alt mr-1"></i> Kegiatan</p>
                                 </a>
                             </li>
                         </ul>
-                    </li> -->
+                    </li>
                 <?php } ?>
             </ul>
         </nav>

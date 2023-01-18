@@ -75,7 +75,7 @@ if (!isset($_SESSION['login'])) {
                         <i class="fas fa-sign-out-alt ml-1 text-white"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header bg-olive">
+                        <span class="dropdown-item dropdown-header bg-purple">
                             <i class="fa fa-user mr-1"></i> <?= $_SESSION['nm_user'] ?>
                         </span>
                         <div class="dropdown-divider"></div>

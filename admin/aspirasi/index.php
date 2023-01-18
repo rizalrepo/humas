@@ -64,13 +64,13 @@ include_once '../../template/sidebar.php';
                                                 <td align="center"><?= tgl($row['tanggal']) ?> <br> Jam <?= $row['jam'] ?></td>
                                                 <td><?= $row['pesan'] ?></td>
                                                 <td>
-                                                    <?php if ($row['status'] == 0) { ?>
+                                                    <?php if ($row['status'] == 1) { ?>
                                                         <div class="text-center">
                                                             <span class="btn btn-xs btn-warning fw-bold">
                                                                 Belum ada tindak lanjut
                                                             </span>
                                                         </div>
-                                                    <?php } else if ($row['status'] == 2) { ?>
+                                                    <?php } else if ($row['status'] == 3) { ?>
                                                         <div class="text-center">
                                                             <span class="btn btn-xs btn-danger fw-bold">
                                                                 Data yang disampaikan tidak Valid
