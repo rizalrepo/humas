@@ -114,7 +114,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="<?= base_url() ?>/admin/disposisi/" class="nav-link <?php if ($page == 'disposisi') {
                                                                                             echo 'active';
                                                                                         } ?>">
@@ -133,7 +133,7 @@
                                 Data Kegiatan
                             </p>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-header">Laporan</li>
                     <li class="nav-item has-treeview">
@@ -160,7 +160,7 @@
                                     <p><i class="fa fa-file-alt mr-1"></i> Surat Masuk</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_disposisi">
                                     <p><i class="fa fa-file-alt mr-1"></i> Disposisi Surat Masuk</p>
                                 </a>
@@ -169,7 +169,7 @@
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kegiatan">
                                     <p><i class="fa fa-file-alt mr-1"></i> Kegiatan</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
 
@@ -209,7 +209,7 @@
                                     <p><i class="fa fa-file-alt mr-1"></i> Surat Masuk</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_disposisi">
                                     <p><i class="fa fa-file-alt mr-1"></i> Disposisi Surat Masuk</p>
                                 </a>
@@ -218,7 +218,7 @@
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kegiatan">
                                     <p><i class="fa fa-file-alt mr-1"></i> Kegiatan</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                 <?php } ?>

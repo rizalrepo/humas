@@ -60,7 +60,7 @@ $e = $con->query("SELECT COUNT(*) AS total FROM kegiatan")->fetch_array();
                         <!-- /.info-box-content -->
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="info-box mb-12 bg-primary">
                         <span class="info-box-icon"><i class="fas fa-mail-bulk"></i></span>
 
@@ -68,7 +68,6 @@ $e = $con->query("SELECT COUNT(*) AS total FROM kegiatan")->fetch_array();
                             <h6 class="info-box-text mt-1 mb-1">Data Disposisi</h6>
                             <span><?= $d['total'] ?> Total Data</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -79,9 +78,8 @@ $e = $con->query("SELECT COUNT(*) AS total FROM kegiatan")->fetch_array();
                             <h6 class="info-box-text mt-1 mb-1">Data Kegiatan</h6>
                             <span><?= $e['total'] ?> Total Data</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!--/. container-fluid -->
