@@ -14,6 +14,12 @@ $sts = [
     '2' => 'Pengaduan ditindak lanjuti',
     '3' => 'Data yang disampaikan tidak Valid',
 ];
+
+if ($row['status'] == 2) {
+    $view = '';
+} else {
+    $view = 'hidden';
+}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -68,6 +74,7 @@ $sts = [
                                         <textarea class="form-control" readonly><?= $row['pesan'] ?></textarea>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Status Pesan</label>
                                     <div class="col-sm-10">
@@ -75,15 +82,16 @@ $sts = [
                                     </div>
                                 </div>
 
-
-                                <div class="form-group row" id="tindakan" hidden>
+                                <!-- <div class="form-group row"> -->
+                                <div class="form-group row" id="tindakan" <?= $view ?>>
                                     <label class="col-sm-2 col-form-label">Tindak Lanjut</label>
                                     <div class="col-sm-10">
                                         <textarea class="form-control" name="tindakan"><?= $row['tindakan'] ?></textarea>
                                     </div>
                                 </div>
 
-                                <div class="form-group row" id="pic" hidden>
+                                <!-- <div class="form-group row"> -->
+                                <div class="form-group row" id="pic" <?= $view ?>>
                                     <label class="col-sm-2 col-form-label">PIC Unit Kerja</label>
                                     <div class="col-sm-10">
                                         <select name="id_unit_kerja" class="form-control select2" style="width: 100%;">
@@ -132,7 +140,7 @@ include_once '../../template/footer.php';
     $(window).load(function() {
         $("#sts").change(function() {
             console.log($("#sts option:selected").val());
-            if ($("#sts option:selected").val() == '1') {
+            if ($("#sts option:selected").val() == '2') {
                 $('#tindakan').prop('hidden', false);
                 $('#pic').prop('hidden', false);
             } else {
@@ -140,14 +148,6 @@ include_once '../../template/footer.php';
                 $('#pic').prop('hidden', 'true');
             }
         });
-
-        if ($("#sts option:selected").val() == '1') {
-            $('#tindakan').prop('hidden', false);
-            $('#pic').prop('hidden', false);
-        } else {
-            $('#tindakan').prop('hidden', 'true');
-            $('#pic').prop('hidden', 'true');
-        }
     });
 </script>
 

@@ -142,7 +142,7 @@ if (isset($_POST['log'])) {
                 });     
             },10);  
             window.setTimeout(function(){ 
-                window.location.replace('index');
+                window.location.replace('login');
             } ,2000);   
         </script>";
     }
