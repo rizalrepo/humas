@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2023 at 12:45 PM
+-- Generation Time: Feb 06, 2023 at 01:51 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -34,6 +34,7 @@ CREATE TABLE `aspirasi` (
   `no_hp` varchar(20) NOT NULL,
   `tanggal` date NOT NULL,
   `jam` varchar(10) NOT NULL,
+  `id_kategori_aspirasi` int(11) NOT NULL,
   `pesan` text NOT NULL,
   `status` char(1) NOT NULL,
   `tindakan` varchar(100) DEFAULT NULL,
@@ -44,8 +45,9 @@ CREATE TABLE `aspirasi` (
 -- Dumping data for table `aspirasi`
 --
 
-INSERT INTO `aspirasi` (`id_aspirasi`, `nm_lengkap`, `no_hp`, `tanggal`, `jam`, `pesan`, `status`, `tindakan`, `id_unit_kerja`) VALUES
-(1, 'John Mayer', '+6285248176794', '2023-01-06', '15:31', 'test aspirasi', '2', 'oke', 2);
+INSERT INTO `aspirasi` (`id_aspirasi`, `nm_lengkap`, `no_hp`, `tanggal`, `jam`, `id_kategori_aspirasi`, `pesan`, `status`, `tindakan`, `id_unit_kerja`) VALUES
+(1, 'John Mayer', '+6285248176794', '2023-01-06', '15:31', 2, 'test aspirasi', '2', 'oke', 2),
+(6, 'John Lennon', '+6285248176794', '2023-02-06', '20:16', 4, 'Tes informasi ', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,6 +115,26 @@ INSERT INTO `jenis_surat` (`id_jenis_surat`, `nm_jenis_surat`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kategori_aspirasi`
+--
+
+CREATE TABLE `kategori_aspirasi` (
+  `id_kategori_aspirasi` int(11) NOT NULL,
+  `nm_kategori_aspirasi` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kategori_aspirasi`
+--
+
+INSERT INTO `kategori_aspirasi` (`id_kategori_aspirasi`, `nm_kategori_aspirasi`) VALUES
+(2, 'Layanan'),
+(3, 'Kesejahteraan'),
+(4, 'Informasi');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kegiatan`
 --
 
@@ -156,7 +178,9 @@ CREATE TABLE `pengaduan` (
 --
 
 INSERT INTO `pengaduan` (`id_pengaduan`, `nm_lengkap`, `no_hp`, `tanggal`, `jam`, `pesan`, `status`, `tindakan`, `id_unit_kerja`) VALUES
-(1, 'John Lennon', '+6287813567789', '2023-01-06', '15:32', 'test pengaduan', '2', 'siapp', 5);
+(1, 'John Lennon', '+6287813567789', '2023-01-06', '15:32', 'test pengaduan', '2', 'siapp', 5),
+(3, 'duan', '+6281391701913', '2023-02-01', '00:24', 'res', '2', 'okeay', 6),
+(4, 'Syintia', '+6281248679090', '2023-02-06', '20:17', 'Test Baru', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,7 +204,8 @@ CREATE TABLE `surat_masuk` (
 --
 
 INSERT INTO `surat_masuk` (`id_surat_masuk`, `no_surat`, `tgl_surat`, `perihal`, `pengirim`, `id_jenis_surat`, `tgl_terima`, `bukti`) VALUES
-(3, '1223232', '2022-12-28', 'Undangan menghadiri acara ', 'Ormas', 5, '2023-01-05', '22576.jpg');
+(3, '1223232', '2022-12-28', 'Undangan menghadiri acara ', 'Ormas', 5, '2023-01-05', '22576.jpg'),
+(4, '1223232', '2023-01-24', 'Undangan menghadiri acara', 'Kampus UNISKA', 5, '2023-01-31', '42114.jpg');
 
 -- --------------------------------------------------------
 
@@ -238,7 +263,8 @@ INSERT INTO `user` (`id_user`, `nm_user`, `username`, `password`, `level`) VALUE
 -- Indexes for table `aspirasi`
 --
 ALTER TABLE `aspirasi`
-  ADD PRIMARY KEY (`id_aspirasi`);
+  ADD PRIMARY KEY (`id_aspirasi`),
+  ADD KEY `id_kategori_aspirasi` (`id_kategori_aspirasi`);
 
 --
 -- Indexes for table `disposisi`
@@ -257,6 +283,12 @@ ALTER TABLE `jenis_kegiatan`
 --
 ALTER TABLE `jenis_surat`
   ADD PRIMARY KEY (`id_jenis_surat`);
+
+--
+-- Indexes for table `kategori_aspirasi`
+--
+ALTER TABLE `kategori_aspirasi`
+  ADD PRIMARY KEY (`id_kategori_aspirasi`);
 
 --
 -- Indexes for table `kegiatan`
@@ -296,7 +328,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `aspirasi`
 --
 ALTER TABLE `aspirasi`
-  MODIFY `id_aspirasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_aspirasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `disposisi`
 --
@@ -313,6 +345,11 @@ ALTER TABLE `jenis_kegiatan`
 ALTER TABLE `jenis_surat`
   MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
+-- AUTO_INCREMENT for table `kategori_aspirasi`
+--
+ALTER TABLE `kategori_aspirasi`
+  MODIFY `id_kategori_aspirasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
@@ -321,12 +358,12 @@ ALTER TABLE `kegiatan`
 -- AUTO_INCREMENT for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `surat_masuk`
 --
 ALTER TABLE `surat_masuk`
-  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `unit_kerja`
 --
@@ -336,7 +373,17 @@ ALTER TABLE `unit_kerja`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `aspirasi`
+--
+ALTER TABLE `aspirasi`
+  ADD CONSTRAINT `aspirasi_ibfk_1` FOREIGN KEY (`id_kategori_aspirasi`) REFERENCES `kategori_aspirasi` (`id_kategori_aspirasi`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

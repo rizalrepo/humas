@@ -5,7 +5,7 @@ $page = 'aspirasi';
 include_once '../../template/sidebar.php';
 
 $id = $_GET['id'];
-$query = $con->query(" SELECT * FROM aspirasi WHERE id_aspirasi ='$id'");
+$query = $con->query(" SELECT * FROM aspirasi a JOIN kategori_aspirasi b ON a.id_kategori_aspirasi = b.id_kategori_aspirasi WHERE id_aspirasi ='$id'");
 $row = $query->fetch_array();
 
 $sts = [
@@ -66,6 +66,12 @@ if ($row['status'] == 2) {
                                     <label class="col-sm-2 col-form-label">Waktu Pengiriman</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" value="<?= tgl($row['tanggal']) ?> (<?= $row['jam'] ?>)" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Kategori Aspirasi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="<?= $row['nm_kategori_aspirasi'] ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">

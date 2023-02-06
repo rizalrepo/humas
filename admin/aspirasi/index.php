@@ -42,6 +42,7 @@ include_once '../../template/sidebar.php';
                                             <th>No</th>
                                             <th>Data Pengirim</th>
                                             <th>Waktu</th>
+                                            <th>Kategori</th>
                                             <th>Pesan</th>
                                             <th>Tindak Lanjut</th>
                                             <th>Aksi</th>
@@ -51,7 +52,7 @@ include_once '../../template/sidebar.php';
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $data = $con->query("SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja ORDER BY a.id_aspirasi DESC");
+                                        $data = $con->query("SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja LEFT JOIN kategori_aspirasi c ON a.id_kategori_aspirasi = c.id_kategori_aspirasi ORDER BY a.id_aspirasi DESC");
                                         while ($row = $data->fetch_array()) {
                                         ?>
                                             <tr>
@@ -62,6 +63,7 @@ include_once '../../template/sidebar.php';
                                                     <b>No HP</b> : <a href="https://wa.me/<?= $row['no_hp'] ?>" target="_blank"><?= $row['no_hp'] ?></a>
                                                 </td>
                                                 <td align="center"><?= tgl($row['tanggal']) ?> <br> Jam <?= $row['jam'] ?></td>
+                                                <td align="center"><?= $row['nm_kategori_aspirasi'] ?></td>
                                                 <td><?= $row['pesan'] ?></td>
                                                 <td>
                                                     <?php if ($row['status'] == 1) { ?>

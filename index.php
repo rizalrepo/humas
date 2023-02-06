@@ -86,11 +86,21 @@ require 'app/config.php';
 								<input type="text" name="nm_lengkap" class="form-control" placeholder="Nama Lengkap" required>
 							</div>
 							<div class="form-group">
-								<label class="mb-1 fw-bold">Nomor HP / WA <small><i>(agar bisa dihubungi jika dibutuhkan informasi lebih lanjut)</i></small></label>
+								<label class="mb-1 fw-bold">Nomor HP / WA <br> <small><i>Nomor harus Aktif agar bisa dihubungi jika dibutuhkan informasi lebih lanjut dan Identitas Pengirim dijamin tidak akan bocor (AMAN)</i></small></label>
 								<div class="input-group mb-">
 									<span class="input-group-text" id="basic-addon1">+62</span>
 									<input type="number" name="no_hp" class="form-control" placeholder="8xxxxxxxx" required>
 								</div>
+							</div>
+							<div class="form-group">
+								<label class="mb-1 fw-bold">Kategori Aspirasi</label>
+								<select name="id_kategori_aspirasi" class="form-select" required>
+									<option value="">-- Pilih Kategori --</option>
+									<?php $data = $con->query("SELECT * FROM kategori_aspirasi ORDER BY id_kategori_aspirasi DESC"); ?>
+									<?php foreach ($data as $row) : ?>
+										<option value="<?= $row['id_kategori_aspirasi'] ?>"><?= $row['nm_kategori_aspirasi'] ?></option>
+									<?php endforeach ?>
+								</select>
 							</div>
 							<div class="form-group">
 								<label class="mb-1 fw-bold">Pesan Aspirasi</label>
@@ -122,7 +132,7 @@ require 'app/config.php';
 								<input type="text" name="nm_lengkap" class="form-control" placeholder="Nama Lengkap" required>
 							</div>
 							<div class="form-group">
-								<label class="mb-1 fw-bold">Nomor HP / WA <small><i>(agar bisa dihubungi jika dibutuhkan informasi lebih lanjut)</i></small></label>
+								<label class="mb-1 fw-bold">Nomor HP / WA <br> <small><i>Nomor harus Aktif agar bisa dihubungi jika dibutuhkan informasi lebih lanjut dan Identitas Pengirim dijamin tidak akan bocor (AMAN)</i></small></label>
 								<div class="input-group mb-">
 									<span class="input-group-text" id="basic-addon1">+62</span>
 									<input type="number" name="no_hp" class="form-control" placeholder="8xxxxxxxx" required>
@@ -197,6 +207,7 @@ if (isset($_POST['aspirasi'])) {
 	$no_hp = '+62' . $_POST['no_hp'];
 	$tgl = date('Y-m-d');
 	$jam = date('H:i');
+	$id_kategori_aspirasi = $_POST['id_kategori_aspirasi'];
 	$pesan = $_POST['pesan'];
 
 	$tambah = $con->query("INSERT INTO aspirasi VALUES (
@@ -205,6 +216,7 @@ if (isset($_POST['aspirasi'])) {
 		'$no_hp',
 		'$tgl',
 		'$jam',
+		'$id_kategori_aspirasi',
 		'$pesan',
 		1,
 		default,

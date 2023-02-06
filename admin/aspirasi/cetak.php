@@ -3,12 +3,27 @@ include '../../app/config.php';
 
 $no = 1;
 
+$bln = array(
+    '01' => 'Januari',
+    '02' => 'Februari',
+    '03' => 'Maret',
+    '04' => 'April',
+    '05' => 'Mei',
+    '06' => 'Juni',
+    '07' => 'Juli',
+    '08' => 'Agustus',
+    '09' => 'September',
+    '10' => 'Oktober',
+    '11' => 'November',
+    '12' => 'Desember'
+);
+
 if (isset($_POST['cetak'])) {
 
-    $tgl1 = $_POST['tgl1'];
-    $cektgl1 = isset($tgl1);
-    $tgl2 = $_POST['tgl2'];
-    $cektgl2 = isset($tgl2);
+    $bulan = $_POST['bulan'];
+    $cekbulan = isset($bulan);
+    $tahun = $_POST['tahun'];
+    $cektahun = isset($tahun);
     $aspirasi = $_POST['aspirasi'];
     $cekaspirasi = isset($aspirasi);
 
@@ -20,17 +35,17 @@ if (isset($_POST['cetak'])) {
         $sub = 'Data yang disampaikan tidak Valid';
     }
 
-    if ($tgl1 == $cektgl1 && $tgl2 == $cektgl2 && $aspirasi == null) {
-        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE a.tanggal BETWEEN '$tgl1' AND '$tgl2' ORDER BY tanggal ASC");
-        $label = 'LAPORAN ASPIRASI <br> Tanggal : ' . tgl($tgl1) . ' s/d ' . tgl($tgl2);
-    } else if ($tgl1 == null && $tgl2 == null && $aspirasi == $cekaspirasi) {
-        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE a.status = '$aspirasi' ORDER BY tanggal DESC");
+    if ($bulan == $cekbulan && $tahun == $cektahun && $aspirasi == null) {
+        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja LEFT JOIN kategori_aspirasi c ON a.id_kategori_aspirasi = c.id_kategori_aspirasi WHERE MONTH(a.tanggal) = '$bulan' AND YEAR(a.tanggal) = '$tahun' ORDER BY tanggal ASC");
+        $label = 'LAPORAN ASPIRASI <br> Bulan : ' . $bln[date($bulan)] . ' ' . $tahun;
+    } else if ($bulan == null && $tahun == null && $aspirasi == $cekaspirasi) {
+        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja LEFT JOIN kategori_aspirasi c ON a.id_kategori_aspirasi = c.id_kategori_aspirasi WHERE a.status = '$aspirasi' ORDER BY tanggal DESC");
         $label = 'LAPORAN ASPIRASI <br> Status Pesan : ' . $sub;
-    } else if ($tgl1 == $cektgl1 && $tgl2 == $cektgl2 && $aspirasi == $cekaspirasi) {
-        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE a.tanggal BETWEEN '$tgl1' AND '$tgl2' AND a.status = '$aspirasi' ORDER BY tanggal ASC");
-        $label = 'LAPORAN ASPIRASI <br> Tanggal : ' . tgl($tgl1) . ' s/d ' . tgl($tgl2) . '<br> Status Pesan : ' . $sub;
+    } else if ($bulan == $cekbulan && $tahun == $cektahun && $aspirasi == $cekaspirasi) {
+        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja LEFT JOIN kategori_aspirasi c ON a.id_kategori_aspirasi = c.id_kategori_aspirasi WHERE MONTH(a.tanggal) = '$bulan' AND YEAR(a.tanggal) = '$tahun' AND a.status = '$aspirasi' ORDER BY tanggal ASC");
+        $label = 'LAPORAN ASPIRASI <br> Bulan : ' . $bln[date($bulan)] . ' ' . $tahun . '<br> Status Pesan : ' . $sub;
     } else {
-        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja ORDER BY tanggal DESC");
+        $sql = mysqli_query($con, "SELECT * FROM aspirasi a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja LEFT JOIN kategori_aspirasi c ON a.id_kategori_aspirasi = c.id_kategori_aspirasi ORDER BY tanggal DESC");
         $label = 'LAPORAN ASPIRASI';
     }
 }
@@ -91,6 +106,7 @@ ob_start();
                             <th>Nomor HP</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
+                            <th>Kategori</th>
                             <th>Pesan</th>
                             <th>Tindakan</th>
                             <th>Tujuan Unit Kerja</th>
@@ -105,6 +121,7 @@ ob_start();
                                 <td align="center"><?= $data['no_hp'] ?></td>
                                 <td align="center"><?= tgl($data['tanggal']) ?></td>
                                 <td align="center"><?= $data['jam'] ?></td>
+                                <td align="center"><?= $data['nm_kategori_aspirasi'] ?></td>
                                 <td><?= $data['pesan'] ?></td>
                                 <td>
                                     <?php if ($data['status'] == 1) { ?>

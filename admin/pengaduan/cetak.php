@@ -3,12 +3,27 @@ include '../../app/config.php';
 
 $no = 1;
 
+$bln = array(
+    '01' => 'Januari',
+    '02' => 'Februari',
+    '03' => 'Maret',
+    '04' => 'April',
+    '05' => 'Mei',
+    '06' => 'Juni',
+    '07' => 'Juli',
+    '08' => 'Agustus',
+    '09' => 'September',
+    '10' => 'Oktober',
+    '11' => 'November',
+    '12' => 'Desember'
+);
+
 if (isset($_POST['cetak'])) {
 
-    $tgl1 = $_POST['tgl1'];
-    $cektgl1 = isset($tgl1);
-    $tgl2 = $_POST['tgl2'];
-    $cektgl2 = isset($tgl2);
+    $bulan = $_POST['bulan'];
+    $cekbulan = isset($bulan);
+    $tahun = $_POST['tahun'];
+    $cektahun = isset($tahun);
     $pengaduan = $_POST['pengaduan'];
     $cekpengaduan = isset($pengaduan);
 
@@ -20,15 +35,15 @@ if (isset($_POST['cetak'])) {
         $sub = 'Data yang disampaikan tidak Valid';
     }
 
-    if ($tgl1 == $cektgl1 && $tgl2 == $cektgl2 && $pengaduan == null) {
-        $sql = mysqli_query($con, "SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE a.tanggal BETWEEN '$tgl1' AND '$tgl2' ORDER BY tanggal ASC");
-        $label = 'LAPORAN PENGADUAN <br> Tanggal : ' . tgl($tgl1) . ' s/d ' . tgl($tgl2);
-    } else if ($tgl1 == null && $tgl2 == null && $pengaduan == $cekpengaduan) {
+    if ($bulan == $cekbulan && $tahun == $cektahun && $pengaduan == null) {
+        $sql = mysqli_query($con, "SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE MONTH(a.tanggal) = '$bulan' AND YEAR(a.tanggal) = '$tahun' ORDER BY tanggal ASC");
+        $label = 'LAPORAN PENGADUAN <br> Bulan : ' . $bln[date($bulan)] . ' ' . $tahun;
+    } else if ($bulan == null && $tahun == null && $pengaduan == $cekpengaduan) {
         $sql = mysqli_query($con, "SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE a.status = '$pengaduan' ORDER BY tanggal DESC");
         $label = 'LAPORAN PENGADUAN <br> Status Pesan : ' . $sub;
-    } else if ($tgl1 == $cektgl1 && $tgl2 == $cektgl2 && $pengaduan == $cekpengaduan) {
-        $sql = mysqli_query($con, "SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE a.tanggal BETWEEN '$tgl1' AND '$tgl2' AND a.status = '$pengaduan' ORDER BY tanggal ASC");
-        $label = 'LAPORAN PENGADUAN <br> Tanggal : ' . tgl($tgl1) . ' s/d ' . tgl($tgl2) . '<br> Status Pesan : ' . $sub;
+    } else if ($bulan == $cekbulan && $tahun == $cektahun && $pengaduan == $cekpengaduan) {
+        $sql = mysqli_query($con, "SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE MONTH(a.tanggal) = '$bulan' AND YEAR(a.tanggal) = '$tahun' AND a.status = '$pengaduan' ORDER BY tanggal ASC");
+        $label = 'LAPORAN PENGADUAN <br> Bulan : ' . $bln[date($bulan)] . ' ' . $tahun . '<br> Status Pesan : ' . $sub;
     } else {
         $sql = mysqli_query($con, "SELECT * FROM pengaduan a LEFT JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja ORDER BY tanggal DESC");
         $label = 'LAPORAN PENGADUAN';

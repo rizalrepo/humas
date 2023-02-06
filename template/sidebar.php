@@ -33,12 +33,12 @@
                     </li>
 
                     <li class="nav-item has-treeview  <?php if (
-                                                            $page == 'user' || $page == 'unit-kerja' || $page == 'jenis-kegiatan' || $page == 'jenis-surat'
+                                                            $page == 'user' || $page == 'unit-kerja' || $page == 'jenis-kegiatan' || $page == 'jenis-surat' | $page == 'kategori-aspirasi'
                                                         ) {
                                                             echo 'menu-open';
                                                         } ?>">
                         <a href="#" class="nav-link <?php if (
-                                                        $page == 'user' || $page == 'unit-kerja' || $page == 'jenis-kegiatan' || $page == 'jenis-surat'
+                                                        $page == 'user' || $page == 'unit-kerja' || $page == 'jenis-kegiatan' || $page == 'jenis-surat' | $page == 'kategori-aspirasi'
                                                     ) {
                                                         echo 'active';
                                                     } ?>">
@@ -81,6 +81,14 @@
                                     <p>Data Jenis Kegiatan</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>/admin/kategori-aspirasi/" class="nav-link <?php if ($page == 'kategori-aspirasi') {
+                                                                                                            echo 'active';
+                                                                                                        } ?>">
+                                    <i class="fas fa-stream mr-1"></i>
+                                    <p>Data Kategori Aspirasi</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -114,7 +122,7 @@
                             </p>
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="<?= base_url() ?>/admin/disposisi/" class="nav-link <?php if ($page == 'disposisi') {
                                                                                             echo 'active';
                                                                                         } ?>">
@@ -124,7 +132,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="<?= base_url() ?>/admin/kegiatan/" class="nav-link <?php if ($page == 'kegiatan') {
                                                                                         echo 'active';
                                                                                     } ?>">
@@ -160,12 +168,12 @@
                                     <p><i class="fa fa-file-alt mr-1"></i> Surat Masuk</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_disposisi">
                                     <p><i class="fa fa-file-alt mr-1"></i> Disposisi Surat Masuk</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kegiatan">
                                     <p><i class="fa fa-file-alt mr-1"></i> Kegiatan</p>
                                 </a>
@@ -209,12 +217,12 @@
                                     <p><i class="fa fa-file-alt mr-1"></i> Surat Masuk</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_disposisi">
                                     <p><i class="fa fa-file-alt mr-1"></i> Disposisi Surat Masuk</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal" data-target="#lap_kegiatan">
                                     <p><i class="fa fa-file-alt mr-1"></i> Kegiatan</p>
                                 </a>

@@ -12,6 +12,21 @@ $aspirasi = [
     '2' => 'Aspirasi ditindak lanjuti',
     '3' => 'Data yang disampaikan tidak Valid',
 ];
+
+$bln = array(
+    '01' => 'Januari',
+    '02' => 'Februari',
+    '03' => 'Maret',
+    '04' => 'April',
+    '05' => 'Mei',
+    '06' => 'Juni',
+    '07' => 'Juli',
+    '08' => 'Agustus',
+    '09' => 'September',
+    '10' => 'Oktober',
+    '11' => 'November',
+    '12' => 'Desember'
+);
 ?>
 
 <div class="modal fade" id="lap_aspirasi">
@@ -26,16 +41,37 @@ $aspirasi = [
             <div class="modal-body">
                 <form method="POST" target="_blank" action="<?= base_url('admin/aspirasi/cetak') ?>">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>Dari Tanggal</label>
-                                <input type="date" class="form-control" name="tgl1">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Sampai Tanggal</label>
-                                <input type="date" class="form-control" name="tgl2">
+                                <label>Berdasarkan Bulan</label>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label>Bulan</label>
+                                            <select name="bulan" class="form-control">
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="01">Januari</option>
+                                                <option value="02">Februari</option>
+                                                <option value="03">Maret</option>
+                                                <option value="04">April</option>
+                                                <option value="05">Mei</option>
+                                                <option value="06">Juni</option>
+                                                <option value="07">Juli</option>
+                                                <option value="08">Agustus</option>
+                                                <option value="09">September</option>
+                                                <option value="10">Oktober</option>
+                                                <option value="11">November</option>
+                                                <option value="12">Desember</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Tahun</label>
+                                            <input type="number" name="tahun" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -70,16 +106,37 @@ $aspirasi = [
             <div class="modal-body">
                 <form method="POST" target="_blank" action="<?= base_url('admin/pengaduan/cetak') ?>">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>Dari Tanggal</label>
-                                <input type="date" class="form-control" name="tgl1">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Sampai Tanggal</label>
-                                <input type="date" class="form-control" name="tgl2">
+                                <label>Berdasarkan Bulan</label>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label>Bulan</label>
+                                            <select name="bulan" class="form-control">
+                                                <option value="">-- Silahkan Pilih --</option>
+                                                <option value="01">Januari</option>
+                                                <option value="02">Februari</option>
+                                                <option value="03">Maret</option>
+                                                <option value="04">April</option>
+                                                <option value="05">Mei</option>
+                                                <option value="06">Juni</option>
+                                                <option value="07">Juli</option>
+                                                <option value="08">Agustus</option>
+                                                <option value="09">September</option>
+                                                <option value="10">Oktober</option>
+                                                <option value="11">November</option>
+                                                <option value="12">Desember</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Tahun</label>
+                                            <input type="number" name="tahun" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -216,7 +273,7 @@ $aspirasi = [
             <div class="modal-body">
                 <form method="POST" target="_blank" action="<?= base_url('admin/kegiatan/cetak') ?>">
                     <div class="row">
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <div class="form-group">
                                 <label>Berdasarkan Tanggal Mulai Kegiatan</label>
                                 <div class="row">
@@ -234,7 +291,7 @@ $aspirasi = [
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Berdasarkan Jenis Kegiatan</label>
