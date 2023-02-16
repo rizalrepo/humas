@@ -70,7 +70,7 @@ $e = $con->query("SELECT COUNT(*) AS total FROM kegiatan")->fetch_array();
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-sm-4">
+                <div class="col-sm-4">
                     <div class="info-box mb-12 bg-primary">
                         <span class="info-box-icon"><i class="fas fa-bell"></i></span>
 
@@ -79,7 +79,7 @@ $e = $con->query("SELECT COUNT(*) AS total FROM kegiatan")->fetch_array();
                             <span><?= $e['total'] ?> Total Data</span>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <!--/. container-fluid -->

@@ -273,7 +273,7 @@ $bln = array(
             <div class="modal-body">
                 <form method="POST" target="_blank" action="<?= base_url('admin/kegiatan/cetak') ?>">
                     <div class="row">
-                        <!-- <div class="col-md-12">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Berdasarkan Tanggal Mulai Kegiatan</label>
                                 <div class="row">
@@ -291,7 +291,7 @@ $bln = array(
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Berdasarkan Jenis Kegiatan</label>
