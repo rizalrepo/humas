@@ -15,7 +15,7 @@ include_once '../../template/sidebar.php';
                     <h4 class="m-0 text-dark"><i class="fas fa-mail-bulk ml-1 mr-1"></i> Data Disposisi Surat Masuk</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6 text-right">
-                    <a href="tambah" class="btn btn-sm bg-dark"><i class="fa fa-plus-circle"> Tambah Data</i></a>
+
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -70,9 +70,10 @@ include_once '../../template/sidebar.php';
                                                 <td align="center"><?= tgl($row['tgl_terima']) ?></td>
                                                 <td align="center">
                                                     <?php
-                                                    $dpp = $con->query("SELECT * FROM disposisi a JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja")->fetch_array();
+                                                    $dpp = $con->query("SELECT * FROM disposisi a JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE id_surat_masuk = '$row[0]' ")->fetch_array();
 
-                                                    $dpp2 = $con->query("SELECT * FROM disposisi a JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja ORDER BY a.id_unit_kerja ASC");
+                                                    $dpp2 = $con->query("SELECT * FROM disposisi a JOIN unit_kerja b ON a.id_unit_kerja = b.id_unit_kerja WHERE id_surat_masuk = '$row[0]' ORDER BY a.id_unit_kerja ASC");
+
 
                                                     if ($dpp['id_surat_masuk'] == $row[0]) { ?>
                                                         <span class="btn btn-xs btn-success">
