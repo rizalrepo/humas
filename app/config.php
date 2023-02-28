@@ -13,7 +13,8 @@ if (mysqli_connect_errno()) {
 
 function base_url($url = null)
 {
-  $base_url = "http://localhost/humas";
+  // $base_url = "http://localhost/humas";
+  $base_url = "https://humas.rizdev.my.id";
   if ($url != null) {
     return $base_url . "/" . $url;
   } else {
